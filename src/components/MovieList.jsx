@@ -2,7 +2,6 @@ import React from 'react'
 import MovieCards from './MovieCards'
 
 const MovieList = ({title, movies}) => {
-  console.log(movies);
   if (!movies || movies.length === 0) {
   return <h2 className="text-white">Loading movies...</h2>;
 }

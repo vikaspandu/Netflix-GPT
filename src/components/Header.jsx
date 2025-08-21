@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { auth } from '../utils/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
+import { toggleGptSearchBar } from '../utils/gptSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Header = () => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user)
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
         navigate('/Browse')
@@ -31,6 +33,10 @@ const Header = () => {
     return () => unSubscribe();
   }, []);
 
+  const handleToggleButton = () =>{
+    dispatch(toggleGptSearchBar())
+  }
+
   return (
     <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between'>
       <img className="w-44"
@@ -38,10 +44,10 @@ const Header = () => {
 
       {user && (
         <div className='flex p-2'>
-        <img className='w-12 h-12 ' src="https://i.pinimg.com/1200x/d7/19/6a/d7196adc7c4f353d52235c5e6ed12e65.jpg" alt="Logo" />
-
-        <button className='font-bold p-2 text-white' onClick={handleSignOut}>(Sign Out)</button>
-      </div>
+          <button className='py-2 px-4 my-2 mx-4 bg-purple-800 text-white rounded-lg' onClick={handleToggleButton}>GPT Search</button>
+          <img className='w-12 h-12 ' src="https://i.pinimg.com/1200x/d7/19/6a/d7196adc7c4f353d52235c5e6ed12e65.jpg" alt="Logo" />
+          <button className='font-bold p-2 text-white' onClick={handleSignOut}>(Sign Out)</button>
+        </div>
       )}
     </div>
   )

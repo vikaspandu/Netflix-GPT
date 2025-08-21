@@ -2,7 +2,7 @@ import React, { use } from 'react'
 import Header from './Header'
 import { useState, useRef } from 'react'
 import { createValidation } from '../utils/createValidation';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
@@ -15,7 +15,7 @@ const Login = () => {
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null)
- 
+
 
   const handleValidation = () => {
     const emailValue = email.current.value;
@@ -27,14 +27,13 @@ const Login = () => {
     if (!isSignIn) {
       createUserWithEmailAndPassword(auth, emailValue, passwordValue)
         .then((userCredential) => {
-          // Signed up 
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/92224680?v=4"
           }).then(() => {
-             console.log(auth.currentUser)
-             const {uid, email, displayName, photoURL} = auth.currentUser;
-                 dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}));
+            console.log(auth.currentUser)
+            const { uid, email, displayName, photoURL } = auth.currentUser;
+            dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
           }).catch((error) => {
             setErrorMessage(error.message);
           });
