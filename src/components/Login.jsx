@@ -31,7 +31,6 @@ const Login = () => {
           updateProfile(user, {
             displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/92224680?v=4"
           }).then(() => {
-            console.log(auth.currentUser)
             const { uid, email, displayName, photoURL } = auth.currentUser;
             dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
           }).catch((error) => {

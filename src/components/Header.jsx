@@ -22,7 +22,6 @@ const Header = () => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user)
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
         navigate('/Browse')
