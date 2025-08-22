@@ -7,6 +7,7 @@ import { addUser, removeUser } from '../utils/userSlice';
 import { toggleGptSearchBar } from '../utils/gptSlice';
 
 const Header = () => {
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
