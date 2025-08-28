@@ -11,6 +11,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
@@ -44,7 +45,8 @@ const Header = () => {
 
       {user && (
         <div className='flex p-2'>
-          <button className='py-2 px-4 my-2 mx-4 bg-purple-800 text-white rounded-lg' onClick={handleToggleButton}>GPT Search</button>
+          <button className={`py-2 px-4 my-2 mx-4 rounded-lg text-white 
+              ${showGptSearch ? "bg-green-600" : "bg-purple-800"}`} onClick={handleToggleButton}> {showGptSearch ? "Home" : "GPT Search"}</button>
           <img className='w-12 h-12 ' src="https://i.pinimg.com/1200x/d7/19/6a/d7196adc7c4f353d52235c5e6ed12e65.jpg" alt="Logo" />
           <button className='font-bold p-2 text-white' onClick={handleSignOut}>(Sign Out)</button>
         </div>
