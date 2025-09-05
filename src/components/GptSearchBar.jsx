@@ -32,8 +32,8 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className='pt-[10%] flex justify-center'>
-      <form className='w-1/2 bg-black grid grid-cols-12 rounded-lg' onSubmit={(e) => e.preventDefault()}>
+    <div className='pt-[40%] md:pt-[10%] flex justify-center'>
+      <form className='w-full md:w-1/2 bg-black grid grid-cols-12 rounded-lg' onSubmit={(e) => e.preventDefault()}>
         <input ref={searchText} type='text' className='p-4 m-4 col-span-9 rounded-lg' placeholder='What would you like to watch today?' />
         <button className='col-span-3 m-4 py-2 px-4 bg-red-700 text-white rounded-lg' onClick={handleOnclickEvent}>Search</button>
       </form>
@@ -43,4 +43,4 @@ const GptSearchBar = () => {
 
 export default GptSearchBar
 
-//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
+//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 
